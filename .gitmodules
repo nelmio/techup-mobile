@@ -1,0 +1,3 @@
+[submodule "lib/touch"]
+	path = lib/touch
+	url = https://github.com/RichardBronosky/sencha-touch.git
