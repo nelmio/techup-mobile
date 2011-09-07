@@ -24,6 +24,55 @@
 .undoreset ul { display: block; list-style-type: disc; margin: 1em 0; padding-left: 40px; }
 .undoreset ol { display: block; list-style-type: decimal; margin: 1em 0; padding-left: 40px; }
 .undoreset li { display: list-item; }
+
+/* Avatar Lists*/
+.x-list div.avatar-list-item {
+    position: relative;
+    padding: 0px;
+}
+
+.x-list div.avatar-list-item img.avatar-img {
+    width: 73px;
+    height: 73px;
+    border: none;
+    float: left;
+    margin-right: 5px;
+}
+
+.x-list div.avatar-list-item .name {
+    font-weight: bold;
+    padding-top: 5px;
+    height: 1.6em;
+    font-size: 0.7em;
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.x-list div.avatar-list-item .date {
+    font-size: 0.7em;
+    opacity: 0.6;
+}
+.x-list div.avatar-list-item .techup-disclosure {
+    position: absolute;
+    top: 23px;
+    right: 9px;
+
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px #5E7899;
+}
+
+.x-list div.avatar-list-item .counter {
+    position: absolute;
+    top: 3px;
+    left: 70px;
+    font-size: 11px;
+}
+
+.x-list div.x-item-selected .techup-disclosure {
+    -webkit-text-stroke: 2px #fff;
+}
+
 /* Pre */
 .undoreset pre, .undoreset code { display: block; font-family: Courier New; white-space: pre; margin: 1em 0; }
 

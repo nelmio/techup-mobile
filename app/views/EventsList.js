@@ -19,7 +19,21 @@ app.views.EventsList = Ext.extend(Ext.Panel, {
         {
             xtype: 'list',
             store: app.stores.upcomingEvents,
-            itemTpl: '{name}',
+            itemCls: 'avatar-list-item',
+            itemTpl: [
+                '<img class="avatar-img" src="http://img.tweetimag.es/i/{twitter_handle}_b"/>',
+                '<div class="name">{name}</div>',
+                '<div class="date">',
+                    '{dateFromToLine1}',
+                    '<br/>',
+                    '{dateFromToLine2}',
+                '</div>',
+                '<div class="date">{city}, {canton}</div>',
+                
+                '<div class="techup-disclosure">&gt;</div>',
+                '<tpl if="attendees.length!==0"><div class="counter x-hasbadge"><span class="x-badge">{attendees.length}</span></div></tpl>'
+            ],
+            grouped: true,
             listeners: {
                 itemTap: function(subList, subIdx, el, e) {
                     var store      = subList.getStore(),

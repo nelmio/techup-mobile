@@ -14,13 +14,49 @@ app.models.Event = Ext.regModel("app.models.Event", {
         {
             name: 'dateFromShort',
             convert: function(value, record) {
-                return record.get('dateFrom').format('d. m. Y, h:m');
+                return record.get('dateFrom').format('d.m. Y, h:i');
             }
         },
         {
             name: 'dateToShort',
             convert: function(value, record) {
-                return record.get('dateTo').format('d. m. Y, h:m');
+                return record.get('dateTo').format('d.m. Y, h:i');
+            }
+        },
+        {
+            name: 'dateFromToLine1',
+            convert: function(value, record) {
+                var dateFrom, dateTo, dateFromFormated, dateToFormated, hourFrom, hourTo;
+                dateFrom = record.get('dateFrom');
+                dateTo = record.get('dateTo');
+                dateFromFormated = dateFrom.format('d.m.Y');
+                dateToFormated = dateTo.format('d.m.Y');
+                hourFrom = dateFrom.format('h:i'); 
+                hourTo = dateTo.format('h:i'); 
+                
+                if (dateToFormated === dateFromFormated) {
+                    return dateFromFormated;
+                } else {
+                    return dateFromFormated + ' ' + hourFrom;
+                }
+            }
+        },
+        {
+            name: 'dateFromToLine2',
+            convert: function(value, record) {
+                var dateFrom, dateTo, dateFromFormated, dateToFormated, hourFrom, hourTo;
+                dateFrom = record.get('dateFrom');
+                dateTo = record.get('dateTo');
+                dateFromFormated = dateFrom.format('d.m.Y');
+                dateToFormated = dateTo.format('d.m.Y');
+                hourFrom = dateFrom.format('h:i'); 
+                hourTo = dateTo.format('h:i'); 
+                
+                if (dateToFormated === dateFromFormated) {
+                    return hourFrom + ' - ' + hourTo;
+                } else {
+                    return dateToFormated + ' ' + hourTo;
+                }
             }
         },
         {name: "location", type: "string"},
@@ -32,7 +68,9 @@ app.models.Event = Ext.regModel("app.models.Event", {
         {name: "price", type: "string"},
         {name: "link", type: "string"},
         {name: "twitter_handle", type: "string"},
-        {name: "attendees", type: "auto"}
+        {name: "attendees", type: "auto"},
+        {name: "dateGroup", type: "string"},
+        
     ]
 });
 
@@ -53,5 +91,9 @@ app.stores.upcomingEvents = new Ext.data.Store({
             type : 'json',
             root : 'events'
         }
+    },
+    getGroupString : function (record) {
+        
+        return record.get('dateGroup');
     }
 });
