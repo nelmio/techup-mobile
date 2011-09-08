@@ -34,6 +34,7 @@
 .x-list div.avatar-list-item img.avatar-img {
     width: 73px;
     height: 73px;
+    background: #fff;
     border: none;
     float: left;
     margin-right: 5px;

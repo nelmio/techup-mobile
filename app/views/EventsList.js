@@ -55,7 +55,9 @@
                     store: new Ext.data.XmlStore(), //app.stores.upcomingEvents,
                     itemCls: 'avatar-list-item',
                     itemTpl: [
-                        '<img class="avatar-img" src="http://img.tweetimag.es/i/{twitter_handle}_b"/>',
+                        '<tpl if="twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/{twitter_handle}_b"/></tpl>',
+                        '<tpl if="!twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/techupch_b"/></tpl>',
+                    
                         '<div class="name">{name}</div>',
                         '<div class="date">',
                             '{dateFromToLine1}',
