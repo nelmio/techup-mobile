@@ -12,7 +12,7 @@ app.views.Viewport = Ext.extend(Ext.Panel, {
     initComponent: function() {
         // put instances of cards into app.views namespace
         Ext.apply(app.views, {
-            upcomingEventsList: new app.views.EventsList(),
+            eventsList: new app.views.EventsList(),
             eventDetail: new app.views.EventDetail(),
             eventDescription: new app.views.EventDescription(),
             eventAttendees: new app.views.EventAttendees(),
@@ -21,7 +21,7 @@ app.views.Viewport = Ext.extend(Ext.Panel, {
         // put instances of cards into viewport
         Ext.apply(this, {
             items: [
-                app.views.upcomingEventsList,
+                app.views.eventsList,
                 app.views.eventDetail,
                 app.views.eventDescription,
                 app.views.eventAttendees,

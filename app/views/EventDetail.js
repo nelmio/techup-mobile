@@ -20,9 +20,11 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
                     ui: 'back',
                     listeners: {
                         'tap': function () {
+                            // TODO: find out how a button can access to the record w/o using globals.
+                            var controllerAction = app.views.eventDetail.items.record.store.controllerAction;
                             Ext.dispatch({
                                 controller: app.controllers.events,
-                                action: 'index',
+                                action: controllerAction,
                                 animation: {type:'slide', direction:'right'}
                             });
                         }
@@ -36,26 +38,16 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
     items: [
         {
             xtype: 'panel',
-            layout: {
-                type: 'hbox',
-                align: 'stretch'
-            },
             id: 'eventdetail',
             items: [
                 {
                     xtype: 'panel',
-                    tpl: '<h3>{name}</h3>',
-                    cls: 'event-detail-name'
-                },
-                { xtype: 'spacer' },
-                {
-                    xtype: 'panel',
                     tpl: [
-                        '<a href="https://mobile.twitter.com/{twitter_handle}" class="avatar" style="background: url(http://img.tweetimag.es/i/{twitter_handle}_b);" target="_blank">',
-                            '<span>{twitter_handle}</span>',
-                        '</a>'
+                        '<img src="http://img.tweetimag.es/i/{twitter_handle}_b"/>',
+                        '<h3><span>{name}</span></h3>',
+                        '<div class="clear">&nbsp;</div>'
                     ],
-                    cls: 'event-detail-avatar'
+                    cls: 'event-detail-name'
                 }
             ]
         },
@@ -66,16 +58,16 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
             },
             cls: 'event-detail-buttons',
             items: [
-                {
-                    xtype: 'button',
-                    ui: 'confirm',
-                    text: 'Attend',
-                    listeners: {
-                        tap: function () {
-                            alert('attending!');
-                        }
-                    }
-                },
+                //{
+                //    xtype: 'button',
+                //    ui: 'confirm',
+                //    text: 'Attend',
+                //    listeners: {
+                //        tap: function () {
+                //            alert('attending!');
+                //        }
+                //    }
+                //},
                 {
                     xtype: 'button',
                     text: 'Description',
@@ -84,7 +76,7 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'description',
-                                id: app.views.eventDetail.items.record.getId()
+                                record: app.views.eventDetail.items.record
                             });
                         }
                     }
@@ -98,7 +90,7 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'attendees',
-                                id: app.views.eventDetail.items.record.getId()
+                                record: app.views.eventDetail.items.record
                             });
                         }
                     }
@@ -111,7 +103,7 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'map',
-                                id: app.views.eventDetail.items.record.getId()
+                                record: app.views.eventDetail.items.record
                             });
                         }
                     }
@@ -120,11 +112,21 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
         }
     ],
     updateWithRecord: function(record) {
+        var attendeesLength;
+        
         Ext.each(Ext.getCmp('eventdetail').getLayout().getLayoutItems(), function(item) {
             item.update(record.data);
         });
-        Ext.getCmp('peopleattendingbutton').setText(record.data.attendees.length + ' people attending');
+        
+        attendeesLength = record.data.attendees.length;
+        if (attendeesLength) {
+            Ext.getCmp('peopleattendingbutton').show();
+            Ext.getCmp('peopleattendingbutton').setText(attendeesLength + ' ' + (attendeesLength == 1 ? 'person' : 'people') + ' attending');
+        } else {
+            Ext.getCmp('peopleattendingbutton').hide();
+        }
         Ext.getCmp('mapbutton').setText('<img src="http://maps.googleapis.com/maps/api/staticmap?center='+record.get('lat')+','+record.get('lon')+'&zoom=14&size=290x100&maptype=roadmap&markers=color:red%7C'+record.get('lat')+','+record.get('lon')+'&sensor=false" />');
         this.items.record = record;
+
     }
 });

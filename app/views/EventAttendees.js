@@ -21,7 +21,7 @@ app.views.EventAttendees = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'show',
-                                id: app.views.eventAttendees.items.record.getId(),
+                                record: app.views.eventAttendees.items.record,
                                 animation: {type:'slide', direction:'right'}
                             });
                         }
@@ -34,11 +34,13 @@ app.views.EventAttendees = Ext.extend(Ext.Panel, {
         {
             xtype: 'list',
             id: 'eventattendees',
+            itemCls: 'avatar-list-item attendees',
             itemTpl: [
-                '<a href="https://mobile.twitter.com/{twitter_handle}" class="avatar" style="background: url(http://img.tweetimag.es/i/{twitter_handle}_b);" target="_blank">',
-                    '<span>{twitter_handle}</span>',
-                '</a>',
-                '<div style="padding-top: 25px;">{fullname}</div>'
+
+                '<img class="avatar-img small" src="http://img.tweetimag.es/i/{twitter_handle}_n"/>',
+                '<div class="name">{fullname}</div>',
+                '<div class="date">@{twitter_handle}</div>'
+                
             ],
             store: false
         }

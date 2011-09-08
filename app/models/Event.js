@@ -81,19 +81,26 @@ app.models.Attendee = Ext.regModel("app.models.Attendee", {
     ]
 });
 
-app.stores.upcomingEvents = new Ext.data.Store({
-    // you need the complete namespace of the model
-    model : 'app.models.Event',
-    proxy : {
-        type : 'ajax',
-        url : '/upcoming.json',
-        reader : {
-            type : 'json',
-            root : 'events'
-        }
-    },
-    getGroupString : function (record) {
-        
-        return record.get('dateGroup');
-    }
-});
+var createEventsListStore = function (name, controllerAction, url) {
+    app.stores[name] = new Ext.data.Store({
+        // you need the complete namespace of the model
+        model : 'app.models.Event',
+        proxy : {
+            type : 'ajax',
+            url : url,
+            reader : {
+                type : 'json',
+                root : 'events'
+            }
+        },
+        getGroupString : function (record) {
+
+            return record.get('dateGroup');
+        },
+        controllerAction: controllerAction
+    });
+
+}
+
+createEventsListStore('upcomingEvents', 'upcomingList', '/upcoming.json');
+createEventsListStore('pastEvents', 'pastList', '/past.json');

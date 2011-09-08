@@ -20,7 +20,7 @@ app.views.EventMap = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'show',
-                                id: app.views.eventMap.items.record.getId(),
+                                record: app.views.eventMap.items.record,
                                 animation: {type:'slide', direction:'right'}
                             });
                         }

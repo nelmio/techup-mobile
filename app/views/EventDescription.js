@@ -21,7 +21,7 @@ app.views.EventDescription = Ext.extend(Ext.Panel, {
                             Ext.dispatch({
                                 controller: app.controllers.events,
                                 action: 'show',
-                                id: app.views.eventDescription.items.record.getId(),
+                                record: app.views.eventDescription.items.record,
                                 animation: {type:'slide', direction:'right'}
                             });
                         }

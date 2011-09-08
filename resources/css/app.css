@@ -39,16 +39,26 @@
     margin-right: 5px;
 }
 
+.x-list div.avatar-list-item img.avatar-img.small {
+    width: 48px;
+    height: 48px;
+}
+
 .x-list div.avatar-list-item .name {
     font-weight: bold;
     padding-top: 5px;
-    height: 1.6em;
     font-size: 0.7em;
     
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.x-list div.avatar-list-item.attendees .name {
+    padding-top: 7px;
+    
+}
+
 .x-list div.avatar-list-item .date {
     font-size: 0.7em;
     opacity: 0.6;
@@ -69,6 +79,13 @@
     font-size: 11px;
 }
 
+/*
+.x-list div.avatar-list-item .counter .x-badge {
+    background-color: rgba(113, 145, 185, 0.75);
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(216, 224, 235, 0.75)), color-stop(2%, rgba(137, 163, 196, 0.75)), color-stop(100%, rgba(90, 126, 173, 0.75)));
+    background-image: linear-gradient(rgba(216, 224, 235, 0.75), rgba(137, 163, 196, 0.75) 2%, rgba(90, 126, 173, 0.75));
+}
+*/
 .x-list div.x-item-selected .techup-disclosure {
     -webkit-text-stroke: 2px #fff;
 }
@@ -116,3 +133,40 @@
 	padding-right: 15px;
 	padding-left: 15px;
 }
+
+/* Event Detail */
+
+.event-detail-name img {
+    float: left;
+    width: 73px;
+    height: 73px;
+    margin-right: 17px;
+}
+.x-html .event-detail-name h3 span {
+    font-size: 0.7em;
+    line-height: 0.7em;
+    font-weight: bold;    
+}
+.x-html .event-detail-name h3 {
+    padding-top: 0px;
+    margin: 0px 0px 0px 90px;
+}
+
+div.clear {
+    clear: both;
+    height: 10px;
+}
+
+/* Title toolbar */
+.techup-toolbar .x-toolbar-title {
+    text-align: left;
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+
