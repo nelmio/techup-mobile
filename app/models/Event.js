@@ -102,5 +102,5 @@ var createEventsListStore = function (name, controllerAction, url) {
 
 }
 
-createEventsListStore('upcomingEvents', 'upcomingList', '/upcoming.json');
-createEventsListStore('pastEvents', 'pastList', '/past.json');
+createEventsListStore('upcomingEvents', 'upcomingList', 'http://techup.ch/api/events/upcoming.json');
+createEventsListStore('pastEvents', 'pastList', 'http://techup.ch/api/events/past.json');
