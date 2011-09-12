@@ -6,10 +6,28 @@
 */
 
 techup.views.EventDetail = Ext.extend(Ext.Panel, {
+    record: undefined,
     dockedItems: [
         {
             xtype: 'toolbar',
-            title: 'Event Detail'
+            title: 'Event Detail',
+            items: [
+                {
+                    text: 'Back',
+                    ui: 'back',
+                    listeners: {
+                        'tap': function () {
+                            // TODO: find out how a button can access to the record w/o using globals.
+                            var controllerAction = techup.views.eventDetail.items.record.store.controllerAction;
+                            Ext.dispatch({
+                                controller: techup.controllers.events,
+                                action: controllerAction,
+                                animation: {type:'slide', direction:'right'}
+                            });
+                        }
+                    }
+                }
+            ]
         }
     ],
     styleHtmlContent: true,
@@ -38,5 +56,7 @@ techup.views.EventDetail = Ext.extend(Ext.Panel, {
                 item.update(record.data);
             }
         );
+
+        this.items.record = record;
     }
 });

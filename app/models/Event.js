@@ -71,7 +71,7 @@ Ext.regModel(
 
 
 
-var createEventListStore = function (name, url) {
+var createEventListStore = function (name, controllerAction, url) {
     Ext.regStore(
         name,
         {
@@ -86,10 +86,11 @@ var createEventListStore = function (name, url) {
             },
             getGroupString: function (record) {
                 return record.get('dateGroup');
-            }
+            },
+            controllerAction: controllerAction
         }
     );
 }
 
-createEventListStore('techup.upcomingEvents', 'http://techup.ch/api/events/upcoming.json');
-createEventListStore('techup.pastEvents', 'http://techup.ch/api/events/past.json');
+createEventListStore('techup.upcomingEvents', 'upcomingList', 'http://techup.ch/api/events/upcoming.json');
+createEventListStore('techup.pastEvents', 'pastList', 'http://techup.ch/api/events/past.json');
