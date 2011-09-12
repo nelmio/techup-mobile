@@ -61,7 +61,10 @@ Ext.setup({
                 {
                     xtype: 'list',
                     store: Ext.getStore('techup.Events'),
-                    itemTpl: '<b>{name}</b> {city}'
+                    itemTpl: '<b>{name}</b> {city}',
+                    onItemDisclosure: function(record, btn, index) {
+                        alert(record.get('name'));
+                    },
                 }
             ]
         });
