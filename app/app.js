@@ -5,30 +5,16 @@
 *
 */
 
-Ext.setup({
-    onReady: function () {
+Ext.regApplication({
+    name: 'techup',
+    launch: function () {
+
+        this.views.viewport = new this.views.Viewport();
 
         Ext.getStore('techup.Events').load();
-        
-        new Ext.Panel({
-            fullscreen: true,
-            layout: 'fit',
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    title: 'Techup',
-                }
-            ],
-            items: [
-                {
-                    xtype: 'list',
-                    store: Ext.getStore('techup.Events'),
-                    itemTpl: '<b>{name}</b> {city}',
-                    onItemDisclosure: function(record, btn, index) {
-                        alert(record.get('name'));
-                    },
-                }
-            ]
-        });
+
+        techup.views.viewport.setActiveItem(
+            techup.views.eventsList
+        );
     }
 });
