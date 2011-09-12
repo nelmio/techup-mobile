@@ -25,7 +25,11 @@ techup.views.EventList = Ext.extend(
                     '<tpl if="twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/{twitter_handle}_b"/></tpl>',
                     '<tpl if="!twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/techupch_b"/></tpl>',
 
-                    '<div class="name">{name}</div>',
+                    '<div class="name">{name}</div>','<div class="date">',
+                        '{dateFromToLine1}',
+                        '<br/>',
+                        '{dateFromToLine2}',
+                    '</div>',
                     '<div class="date">{city}, {canton}</div>',
 
                     '<div class="techup-disclosure">&gt;</div>',
