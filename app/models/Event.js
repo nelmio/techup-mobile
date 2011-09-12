@@ -81,8 +81,8 @@ app.models.Attendee = Ext.regModel("app.models.Attendee", {
     ]
 });
 
-var createEventsListStore = function (name, controllerAction, url) {
-    app.stores[name] = new Ext.data.Store({
+var createEventsListStore = function (name, url) {
+    app.stores[name + 'Events'] = new Ext.data.Store({
         // you need the complete namespace of the model
         model : 'app.models.Event',
         proxy : {
@@ -97,10 +97,10 @@ var createEventsListStore = function (name, controllerAction, url) {
 
             return record.get('dateGroup');
         },
-        controllerAction: controllerAction
+        controllerAction: name
     });
 
 }
 
-createEventsListStore('upcomingEvents', 'upcomingList', 'http://techup.ch/api/events/upcoming.json');
-createEventsListStore('pastEvents', 'pastList', 'http://techup.ch/api/events/past.json');
+createEventsListStore('upcoming', 'http://techup.ch/api/events/upcoming.json');
+createEventsListStore('past', 'http://techup.ch/api/events/past.json');

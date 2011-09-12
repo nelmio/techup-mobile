@@ -22,8 +22,9 @@ app.views.EventDetail = Ext.extend(Ext.Panel, {
                         'tap': function () {
                             // TODO: find out how a button can access to the record w/o using globals.
                             var controllerAction = app.views.eventDetail.items.record.store.controllerAction;
+                            console.log(controllerAction);
                             Ext.dispatch({
-                                controller: app.controllers.events,
+                                controller: Ext.ControllerManager.get('events'),
                                 action: controllerAction,
                                 animation: {type:'slide', direction:'right'}
                             });

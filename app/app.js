@@ -7,11 +7,9 @@
 
 Ext.regApplication({
     name: 'app',
+    //defaultUrl: 'events/upcomingList',
     launch: function() {
         this.views.viewport = new this.views.Viewport();
-        Ext.dispatch({
-            controller: app.controllers.events,
-            action: 'upcomingList'
-        });
+        //Ext.redirect('events/upcomingList');
     }
 });

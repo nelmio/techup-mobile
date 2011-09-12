@@ -6,39 +6,77 @@
 */
 
 // TODO (a.k.a. never gonna happen): replace the "event" terms by "meetup"
-
-app.controllers.events = new Ext.Controller(
+Ext.regController(
+    'events',
     (function () {
-        var that, eventList;
+        var that, eventList, loadStore;
+        
+        loadStore = function (store, callback) {
+            if (typeof callback !== 'function') {
+                callback = function () {};
+            }
+            
+            if (store.data.length === 0) {
+                store.load(callback);
+            } else {
+                callback();
+            }
+        };
         
         setEventList = function (options, store) {
-            if (store.data.length === 0) {
-                store.load();
-            }
-            app.views.eventsList.bindStore(store);
 
-            app.views.viewport.setActiveItem(
-                app.views.eventsList, options.animation
-            );
-            
+            loadStore(store, function () {
+                app.views.eventsList.bindStore(store);
+
+                app.views.viewport.setActiveItem(
+                    app.views.eventsList, options.animation
+                );
+            });
+
         }
         
         that = {
-            upcomingList: function(options) {
+            upcoming: function(options) {
                 setEventList(options, app.stores.upcomingEvents);
             },
-            pastList: function(options) {
+            past: function(options) {
                 setEventList(options, app.stores.pastEvents);
             },
             show: function(options) {
-                var event = options.record;
-                if (event) {
-                    app.views.eventDetail.updateWithRecord(event);
-                    app.views.viewport.setActiveItem(
-                        app.views.eventDetail,
-                        options.animation
-                    );
+
+                var event, store;
+                
+                store = app.stores[options.store + 'Events'];
+
+
+                if (!store) {
+                    // TODO
                 }
+                
+                loadStore(
+                    store,
+                    function () {
+                        event = store.getById(parseInt(options.id));
+
+
+                        if (!event) {
+                            // possibilities:
+                            // * try other store
+                            // * redirect home
+                        }
+
+                        //event = options.record;
+                        if (event) {
+                            app.views.eventDetail.updateWithRecord(event);
+                            app.views.viewport.setActiveItem(
+                                app.views.eventDetail,
+                                options.animation
+                            );
+                        }
+                    }
+                );
+                
+                
             },
             edit: function(options) {
             },
@@ -78,5 +116,4 @@ app.controllers.events = new Ext.Controller(
         };
         return that;
     }())
-    
 );
