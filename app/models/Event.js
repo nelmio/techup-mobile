@@ -69,20 +69,27 @@ Ext.regModel(
     }
 );
 
-Ext.regStore(
-    'techup.Events',
-    {
-        model : 'techup.Event',
-        proxy : {
-            type : 'ajax',
-            url : 'http://techup.ch/api/events/upcoming.json',
-            reader : {
-                type : 'json',
-                root : 'events'
+
+
+var createEventListStore = function (name, url) {
+    Ext.regStore(
+        name,
+        {
+            model: 'techup.Event',
+            proxy: {
+                type: 'ajax',
+                url: url,
+                reader: {
+                    type: 'json',
+                    root: 'events'
+                }
+            },
+            getGroupString: function (record) {
+                return record.get('dateGroup');
             }
-        },
-        getGroupString: function (record) {
-            return record.get('dateGroup');
         }
-    }
-);
+    );
+}
+
+createEventListStore('techup.upcomingEvents', 'http://techup.ch/api/events/upcoming.json');
+createEventListStore('techup.pastEvents', 'http://techup.ch/api/events/past.json');

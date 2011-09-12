@@ -5,6 +5,14 @@
 *
 */
 
+// NEW!
+var eventListSwitchHandler = function (button) {
+    Ext.dispatch({
+        controller: techup.controllers.events,
+        action: button.action
+    });
+};
+
 techup.views.EventList = Ext.extend(
     Ext.Panel,
     {
@@ -13,12 +21,39 @@ techup.views.EventList = Ext.extend(
             {
                 xtype: 'toolbar',
                 title: 'Techup',
+                cls: 'techup-toolbar',
+                layout: {
+                    pack: 'end'
+                },
+                items: [
+                    {
+                        xtype: 'segmentedbutton',
+                        allowDepress: true,
+                        items: [
+                            {
+                                text: 'Upcoming',
+                                handler: eventListSwitchHandler,
+                                pressed: true,
+                                action: 'upcomingList'
+                            },
+                            {
+                                text: 'Past',
+                                handler: eventListSwitchHandler,
+                                action: 'pastList'
+                            }
+                        ]
+                    }
+                ]
             }
         ],
         items: [
             {
                 xtype: 'list',
-                store: Ext.getStore('techup.Events'),
+                
+                // NEW!
+                store: new Ext.data.XmlStore(),
+                id: 'eventList',
+                
 
                 itemCls: 'avatar-list-item',
                 itemTpl: [
@@ -49,6 +84,10 @@ techup.views.EventList = Ext.extend(
                     }
                 }
             }
-        ]
+        ],
+        // NEW!
+        bindStore: function (store) {
+            Ext.getCmp('eventList').bindStore(store);
+        }
     }
 );
