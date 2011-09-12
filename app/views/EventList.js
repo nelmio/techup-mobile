@@ -24,7 +24,8 @@ techup.views.EventList = Ext.extend(
                 itemTpl: '<b>{name}</b> {city}',
                 onItemDisclosure: function(record, btn, index) {
                     alert(record.get('name'));
-                }
+                },
+                grouped: true
             }
         ]
     }

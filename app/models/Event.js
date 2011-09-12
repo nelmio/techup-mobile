@@ -32,6 +32,9 @@ Ext.regStore(
                 type : 'json',
                 root : 'events'
             }
+        },
+        getGroupString: function (record) {
+            return record.get('dateGroup');
         }
     }
 );
