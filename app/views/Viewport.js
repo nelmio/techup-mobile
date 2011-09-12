@@ -8,12 +8,23 @@ techup.views.Viewport = Ext.extend(
             // put instances of cards into app.views namespace
             Ext.apply(techup.views, {
                 eventList: new techup.views.EventList(),
-                eventDetail: new techup.views.EventDetail()
+                eventDetail: new techup.views.EventDetail(),
+                eventDescription: new techup.views.EventDescription(),
+                eventAttendees: new techup.views.EventAttendees(),
+                eventMap: new techup.views.EventMap()
             });
             // put instances of cards into viewport
             Ext.apply(
                 this,
-                { items: [ techup.views.eventList, techup.views.eventDetail ] }
+                { 
+                    items: [
+                        techup.views.eventList,
+                        techup.views.eventDetail,
+                        techup.views.eventDescription,
+                        techup.views.eventAttendees,
+                        techup.views.eventMap
+                    ]
+                }
             );
             techup.views.Viewport.superclass.initComponent.apply(this, arguments);
         }

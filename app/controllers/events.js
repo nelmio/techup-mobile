@@ -37,6 +37,39 @@ techup.controllers.events = new Ext.Controller(
                         options.animation
                     );
                 }
+            },
+            description: function(options) {
+                var event = options.record;
+
+                if (event) {
+                    techup.views.eventDescription.updateWithRecord(event);
+                    techup.views.viewport.setActiveItem(
+                        techup.views.eventDescription,
+                        options.animation
+                    );
+                }
+            },
+            attendees: function(options) {
+                var event = options.record;
+
+                if (event) {
+                    techup.views.eventAttendees.updateWithRecord(event);
+                    techup.views.viewport.setActiveItem(
+                        techup.views.eventAttendees,
+                        options.animation
+                    );
+                }
+            },
+            map: function(options) {
+                var event = options.record;
+
+                if (event) {
+                    techup.views.eventMap.updateWithRecord(event);
+                    techup.views.viewport.setActiveItem(
+                        techup.views.eventMap,
+                        options.animation
+                    );
+                }
             }
         }
 
