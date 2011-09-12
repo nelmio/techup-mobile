@@ -27,6 +27,16 @@ techup.controllers.events = new Ext.Controller(
             },
             pastList: function(options) {
                 setEventList(options, Ext.getStore('techup.pastEvents'));
+            },
+            show: function(options) {
+                var event = options.record;
+                if (event) {
+                    techup.views.eventDetail.updateWithRecord(event);
+                    techup.views.viewport.setActiveItem(
+                        techup.views.eventDetail,
+                        options.animation
+                    );
+                }
             }
         }
 

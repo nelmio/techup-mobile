@@ -5,7 +5,6 @@
 *
 */
 
-// NEW!
 var eventListSwitchHandler = function (button) {
     Ext.dispatch({
         controller: techup.controllers.events,
@@ -49,11 +48,9 @@ techup.views.EventList = Ext.extend(
         items: [
             {
                 xtype: 'list',
-                
-                // NEW!
+
                 store: new Ext.data.XmlStore(),
                 id: 'eventList',
-                
 
                 itemCls: 'avatar-list-item',
                 itemTpl: [
@@ -79,13 +76,16 @@ techup.views.EventList = Ext.extend(
                         record = store.getAt(subIdx);
 
                         if (record) {
-                            alert(record.get('name'));
+                            Ext.dispatch({
+                                controller: techup.controllers.events,
+                                action: 'show',
+                                record: record
+                            });
                         }
                     }
                 }
             }
         ],
-        // NEW!
         bindStore: function (store) {
             Ext.getCmp('eventList').bindStore(store);
         }
