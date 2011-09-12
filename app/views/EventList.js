@@ -5,10 +5,8 @@
 *
 */
 
-// QUESTION: how can we have a dynamic store
-
 techup.views.EventList = Ext.extend(
-    Ext.Panel, 
+    Ext.Panel,
     {
         layout: 'fit',
         dockedItems: [
@@ -21,11 +19,31 @@ techup.views.EventList = Ext.extend(
             {
                 xtype: 'list',
                 store: Ext.getStore('techup.Events'),
-                itemTpl: '<b>{name}</b> {city}',
-                onItemDisclosure: function(record, btn, index) {
-                    alert(record.get('name'));
-                },
-                grouped: true
+
+                itemCls: 'avatar-list-item',
+                itemTpl: [
+                    '<tpl if="twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/{twitter_handle}_b"/></tpl>',
+                    '<tpl if="!twitter_handle"><img class="avatar-img" src="http://img.tweetimag.es/i/techupch_b"/></tpl>',
+
+                    '<div class="name">{name}</div>',
+                    '<div class="date">{city}, {canton}</div>',
+
+                    '<div class="techup-disclosure">&gt;</div>',
+                    '<tpl if="attendees.length!==0"><div class="counter x-hasbadge"><span class="x-badge">{attendees.length}</span></div></tpl>'
+                ],
+
+                grouped: true,
+                listeners: {
+                    itemTap: function(subList, subIdx, el, e) {
+                        var record, store;
+                        store = subList.getStore();
+                        record = store.getAt(subIdx);
+
+                        if (record) {
+                            alert(record.get('name'));
+                        }
+                    }
+                }
             }
         ]
     }
