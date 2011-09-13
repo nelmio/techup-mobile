@@ -1,3 +1,10 @@
+/**
+*
+* @copyright (c) 2011 Nelmio
+* @license http://opensource.org/licenses/gpl-3.0.html GNU Public License, version 3
+*
+*/
+
 techup.views.Viewport = Ext.extend(
     Ext.Panel,
     {
@@ -16,7 +23,7 @@ techup.views.Viewport = Ext.extend(
             // put instances of cards into viewport
             Ext.apply(
                 this,
-                { 
+                {
                     items: [
                         techup.views.eventList,
                         techup.views.eventDetail,
