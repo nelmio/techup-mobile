@@ -30,46 +30,39 @@ techup.controllers.events = new Ext.Controller(
             },
             show: function(options) {
                 var event = options.record;
-                if (event) {
-                    techup.views.eventDetail.updateWithRecord(event);
-                    techup.views.viewport.setActiveItem(
-                        techup.views.eventDetail,
-                        options.animation
-                    );
-                }
+
+                techup.views.eventDetail.updateWithRecord(event);
+                techup.views.viewport.setActiveItem(
+                    techup.views.eventDetail,
+                    options.animation
+                );
             },
             description: function(options) {
                 var event = options.record;
 
-                if (event) {
-                    techup.views.eventDescription.updateWithRecord(event);
-                    techup.views.viewport.setActiveItem(
-                        techup.views.eventDescription,
-                        options.animation
-                    );
-                }
+                techup.views.eventDescription.updateWithRecord(event);
+                techup.views.viewport.setActiveItem(
+                    techup.views.eventDescription,
+                    options.animation
+                );
             },
             attendees: function(options) {
                 var event = options.record;
 
-                if (event) {
-                    techup.views.eventAttendees.updateWithRecord(event);
-                    techup.views.viewport.setActiveItem(
-                        techup.views.eventAttendees,
-                        options.animation
-                    );
-                }
+                techup.views.eventAttendees.updateWithRecord(event);
+                techup.views.viewport.setActiveItem(
+                    techup.views.eventAttendees,
+                    options.animation
+                );
             },
             map: function(options) {
                 var event = options.record;
 
-                if (event) {
-                    techup.views.eventMap.updateWithRecord(event);
-                    techup.views.viewport.setActiveItem(
-                        techup.views.eventMap,
-                        options.animation
-                    );
-                }
+                techup.views.eventMap.updateWithRecord(event);
+                techup.views.viewport.setActiveItem(
+                    techup.views.eventMap,
+                    options.animation
+                );
             }
         }
 

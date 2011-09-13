@@ -75,13 +75,11 @@ techup.views.EventList = Ext.extend(
                         store = subList.getStore();
                         record = store.getAt(subIdx);
 
-                        if (record) {
-                            Ext.dispatch({
-                                controller: techup.controllers.events,
-                                action: 'show',
-                                record: record
-                            });
-                        }
+                        Ext.dispatch({
+                            controller: techup.controllers.events,
+                            action: 'show',
+                            record: record
+                        });
                     }
                 }
             }
