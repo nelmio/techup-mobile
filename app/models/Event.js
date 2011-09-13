@@ -20,13 +20,13 @@ Ext.regModel(
             {
                 name: 'dateFromShort',
                 convert: function(value, record) {
-                    return record.get('dateFrom').format('d.m. Y, h:i');
+                    return record.get('dateFrom').format('d.m. Y, H:i');
                 }
             },
             {
                 name: 'dateToShort',
                 convert: function(value, record) {
-                    return record.get('dateTo').format('d.m. Y, h:i');
+                    return record.get('dateTo').format('d.m. Y, H:i');
                 }
             },
             {
@@ -37,8 +37,8 @@ Ext.regModel(
                     dateTo = record.get('dateTo');
                     dateFromFormated = dateFrom.format('d.m.Y');
                     dateToFormated = dateTo.format('d.m.Y');
-                    hourFrom = dateFrom.format('h:i'); 
-                    hourTo = dateTo.format('h:i'); 
+                    hourFrom = dateFrom.format('H:i');
+                    hourTo = dateTo.format('H:i');
 
                     if (dateToFormated === dateFromFormated) {
                         return dateFromFormated;
@@ -55,8 +55,8 @@ Ext.regModel(
                     dateTo = record.get('dateTo');
                     dateFromFormated = dateFrom.format('d.m.Y');
                     dateToFormated = dateTo.format('d.m.Y');
-                    hourFrom = dateFrom.format('h:i'); 
-                    hourTo = dateTo.format('h:i'); 
+                    hourFrom = dateFrom.format('H:i');
+                    hourTo = dateTo.format('H:i');
 
                     if (dateToFormated === dateFromFormated) {
                         return hourFrom + ' - ' + hourTo;
