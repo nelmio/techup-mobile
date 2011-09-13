@@ -69,7 +69,7 @@ Ext.regModel(
     }
 );
 
-techup.models.Attendee = Ext.regModel("techup.Attendee", {
+Ext.regModel("techup.Attendee", {
     fields: [
         {name: "fullname", type: "string"},
         {name: "twitter_handle", type: "string"}

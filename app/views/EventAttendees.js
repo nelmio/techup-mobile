@@ -40,14 +40,13 @@ techup.views.EventAttendees = Ext.extend(Ext.Panel, {
                 '<img class="avatar-img small" src="http://img.tweetimag.es/i/{twitter_handle}_n"/>',
                 '<div class="name">{fullname}</div>',
                 '<div class="date">@{twitter_handle}</div>'
-                
+
             ],
             store: false
         }
     ],
     updateWithRecord: function(record) {
         this.items.record = record;
-        console.log(record);
 
         var store = new Ext.data.JsonStore({
             model: 'techup.Attendee',
