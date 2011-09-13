@@ -49,7 +49,7 @@ techup.views.EventList = Ext.extend(
             {
                 xtype: 'list',
 
-                store: new Ext.data.XmlStore(),
+                store: new Ext.data.JsonStore(),
                 id: 'eventList',
 
                 itemCls: 'avatar-list-item',
